@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RuangKita | Sistem Booking Ruang Kelas</title>
+  <link rel="stylesheet" href="assets/style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar" id="sidebar">
+      <a class="brand" href="#" data-page="home">
+        <span class="brand-mark">RK</span><span><b>RuangKita</b><small>ROOM BOOKING</small></span>
+      </a>
+      <div class="side-label">MENU UTAMA</div>
+      <nav class="side-nav">
+        <a class="nav-link active" href="#" data-page="home"><span>▦</span> Dashboard</a>
+        <a class="nav-link ajax-link" href="pages/ruangan.html" data-title="Ketersediaan Ruang"><span>▤</span> Ketersediaan Ruang</a>
+        <a class="nav-link ajax-link" href="pages/booking.html" data-title="Ajukan Booking"><span>＋</span> Ajukan Booking</a>
+      </nav>
+      <div class="sidebar-note"><div class="note-icon">✦</div><b>Booking lebih mudah</b><p>Temukan ruang yang sesuai dan ajukan pemakaian dalam satu tempat.</p></div>
+      <div class="sidebar-bottom"><span class="avatar">A</span><span><b>Adityah Candra</b><small>Mahasiswa</small></span><span class="dots">•••</span></div>
+    </aside>
+
+    <main class="main-area">
+      <header class="topbar">
+        <button class="mobile-menu" id="mobileMenu" aria-label="Buka menu">☰</button>
+        <div class="breadcrumb">Workspace <span>/</span> <b id="pageTitle">Dashboard</b></div>
+        <div class="topbar-right"><span class="today-pill">● Sistem aktif</span><span class="avatar small-avatar">A</span></div>
+      </header>
+
+      <section id="pageContent" class="page-content">
+        <div class="welcome-row">
+          <div><p class="eyebrow">DASHBOARD MAHASISWA</p><h1>Selamat datang, Adityah! <span>👋</span></h1><p class="muted">Temukan ruang yang tepat untuk kegiatan akademikmu.</p></div>
+          <div class="date-card"><span>HARI INI</span><b id="todayDate">Memuat tanggal...</b></div>
+        </div>
+
+        <div class="dashboard-tools-grid">
+          <section class="dashboard-search-panel">
+            <div class="dashboard-search-icon">⌕</div>
+            <div class="dashboard-search-copy">
+              <b>Cari ruang lebih cepat</b>
+              <small>Masukkan kode ruang atau nama gedung untuk mulai mencari.</small>
+            </div>
+            <form id="dashboardRoomSearch" class="dashboard-search-form">
+              <input type="search" id="dashboardSearchInput" placeholder="Contoh: K1.01.01" aria-label="Cari kode ruang">
+              <button class="btn btn-primary" type="submit">Cari Ruang <span>→</span></button>
+            </form>
+          </section>
+          <section class="favorites-summary-panel">
+            <div class="favorites-summary-heading">
+              <span class="favorites-summary-icon">★</span>
+              <div><b>Ruang favorit</b><small><span id="favCountHome">0</span> ruang disimpan di perangkat ini</small></div>
+            </div>
+            <div id="favoritePreview" class="favorite-preview"><p>Belum ada ruang favorit. Simpan ruang melalui menu Ketersediaan Ruang.</p></div>
+            <a href="pages/ruangan.html" class="mini-link ajax-link" id="dashboardFavoritesLink" data-title="Ketersediaan Ruang">Kelola ruang favorit <span>→</span></a>
+          </section>
+        </div>
+
+        <div class="stats-grid">
+          <article class="stat-card"><div class="stat-top"><span class="stat-icon blue">▦</span><span class="trend">Data contoh</span></div><p>Total Ruang</p><div class="stat-value">1.000</div><small>Ruang terdaftar</small></article>
+          <article class="stat-card"><div class="stat-top"><span class="stat-icon green">✓</span><span class="trend">Data contoh</span></div><p>Ruang Tersedia</p><div class="stat-value">Memuat...</div><small>Dari total ruang</small></article>
+          <article class="stat-card"><div class="stat-top"><span class="stat-icon amber">◷</span><span class="trend">Perlu dipantau</span></div><p>Menunggu Persetujuan</p><div class="stat-value">3</div><small>Pengajuan booking</small></article>
+          <article class="stat-card"><div class="stat-top"><span class="stat-icon violet">▣</span><span class="trend">Hari ini</span></div><p>Jadwal Hari Ini</p><div class="stat-value">8</div><small>Agenda terjadwal</small></article>
+        </div>
+
+        <div class="content-grid">
+          <section class="panel quick-panel">
+            <div class="panel-heading"><div><h2>Akses cepat</h2><p class="muted">Mulai dari kebutuhanmu</p></div><span class="heading-icon">↗</span></div>
+            <div class="quick-actions">
+              <a href="pages/ruangan.html" class="quick-card ajax-link"><span class="quick-icon blue">⌕</span><span><b>Cari Ruang</b><small>Filter jadwal dan fasilitas</small></span><span class="arrow">→</span></a>
+              <a href="pages/booking.html" class="quick-card ajax-link"><span class="quick-icon orange">＋</span><span><b>Ajukan Booking</b><small>Isi formulir peminjaman</small></span><span class="arrow">→</span></a>
+            </div>
+            <div class="info-banner"><span>ⓘ</span><p>Pastikan tanggal dan waktu yang dipilih tidak berbenturan dengan booking aktif atau jadwal maintenance.</p></div>
+          </section>
+          <section class="panel schedule-panel">
+            <div class="panel-heading"><div><h2>Jadwal ruang hari ini</h2><p class="muted">Contoh agenda penggunaan ruang</p></div><span class="status-tag">Hari ini</span></div>
+            <div class="schedule-list">
+              <div class="schedule-item"><div class="time">08.00<small>09.40</small></div><div class="schedule-line blue-line"></div><div class="schedule-detail"><b>Ruang A-201</b><span>Perkuliahan · Gedung A</span></div><span class="mini-status occupied">Terpakai</span></div>
+              <div class="schedule-item"><div class="time">10.00<small>11.40</small></div><div class="schedule-line green-line"></div><div class="schedule-detail"><b>Ruang B-103</b><span>Diskusi kelompok · Gedung B</span></div><span class="mini-status available">Tersedia</span></div>
+              <div class="schedule-item"><div class="time">13.00<small>14.40</small></div><div class="schedule-line orange-line"></div><div class="schedule-detail"><b>Ruang A-305</b><span>Praktikum · Gedung A</span></div><span class="mini-status occupied">Terpakai</span></div>
+            </div>
+            <p class="demo-disclaimer">*Data pada tampilan ini merupakan data simulasi untuk UTS.</p>
+          </section>
+        </div>
+        <footer class="footer">© 2026 RuangKita · Prototipe UTS Pemrograman Web</footer>
+      </section>
+    </main>
+  </div>
+
+  <!-- Halaman berikut disimpan di template supaya navigasi berjalan tanpa server atau AJAX. -->
+  <template id="roomsTemplate">
+<section class="subpage rooms-page">
+  <div class="welcome-row sub-welcome">
+    <div>
+      <p class="eyebrow">PENCARIAN RUANG</p>
+      <h1>Ruangan Tersedia</h1>
+      <p class="muted">Pilih tanggal dan waktu, lalu cari ruang kelas yang sesuai untuk kegiatanmu.</p>
+    </div>
+    <span class="page-symbol">⌕</span>
+  </div>
+
+  <div class="booking-search-layout">
+    <section class="panel room-filter-panel">
+      <div class="panel-heading">
+        <div><h2>Form Pencarian</h2><p class="muted">Pilih jadwal peminjaman</p></div>
+      </div>
+      <form id="roomFilter" class="room-search-form">
+        <label>Tanggal penggunaan
+          <input type="date" id="filterDate" required>
+        </label>
+        <label>Jam mulai
+          <input type="time" id="filterStart" value="08:00" required>
+        </label>
+        <label>Jam selesai
+          <input type="time" id="filterEnd" value="10:00" required>
+        </label>
+        <label>Gedung
+          <select id="filterBuilding">
+            <option value="">Semua gedung (K1–K10)</option>
+            <option value="1">Gedung K1</option><option value="2">Gedung K2</option>
+            <option value="3">Gedung K3</option><option value="4">Gedung K4</option>
+            <option value="5">Gedung K5</option><option value="6">Gedung K6</option>
+            <option value="7">Gedung K7</option><option value="8">Gedung K8</option>
+            <option value="9">Gedung K9</option><option value="10">Gedung K10</option>
+          </select>
+        </label>
+        <label>Minimal kapasitas
+          <select id="filterCapacity">
+            <option value="0">Semua kapasitas</option>
+            <option value="30">30 orang</option><option value="40">40 orang</option>
+            <option value="50">50 orang</option><option value="60">60 orang</option>
+            <option value="80">80 orang</option>
+          </select>
+        </label>
+        <label>Status ruangan
+          <select id="filterStatus">
+            <option value="available">Tersedia saja</option>
+            <option value="all">Semua status</option>
+            <option value="occupied">Terjadwal</option>
+            <option value="maintenance">Maintenance</option>
+          </select>
+        </label>
+        <div class="room-filter-actions">
+          <button class="btn btn-primary room-search-button" type="submit">Cari Ruangan <span>→</span></button>
+          <button class="btn btn-light room-reset-button" type="button" id="resetRoomFilters">Reset Filter</button>
+        </div>
+      </form>
+      <div class="room-filter-note"><span>ⓘ</span><p>Status ketersediaan merupakan simulasi untuk UTS dan dapat berubah sesuai tanggal serta waktu pilihan.</p></div>
+    </section>
+
+    <section class="panel room-table-panel">
+      <div class="room-table-heading">
+        <div><h2>Daftar Ruangan</h2><p class="muted" id="resultCount">Memuat data ruangan...</p></div>
+        <div class="room-table-controls">
+          <button type="button" class="btn btn-outline favorite-filter-btn" id="favoritesOnly">☆ Favorit saya <span id="favoriteCount">0</span></button>
+          <button type="button" class="btn btn-light export-rooms-btn" id="exportRooms">↓ CSV</button>
+          <label class="room-search-box"><span>⌕</span><input type="search" id="roomSearch" placeholder="Cari kode ruang..."></label>
+        </div>
+      </div>
+      <div class="room-range-note"><span class="range-dot"></span> Rentang kode: <b>K1.01.01</b> sampai <b>K10.10.10</b> <span class="range-count">1.000 ruang simulasi</span></div>
+      <div class="table-responsive">
+        <table class="rooms-table">
+          <thead><tr><th>Nama Ruang</th><th>Kapasitas</th><th>Minimum Peserta</th><th>Status</th><th>Aksi</th></tr></thead>
+          <tbody id="roomTableBody"><tr><td colspan="5" class="table-loading">Memuat data ruangan...</td></tr></tbody>
+        </table>
+      </div>
+      <div class="table-footer">
+        <span id="tableTotal">Total: 1.000 data</span>
+        <nav id="roomPagination" class="pagination" aria-label="Halaman daftar ruangan"></nav>
+      </div>
+      <div id="roomNotice" class="notice" role="status" aria-live="polite"></div>
+    </section>
+  </div>
+
+  <div class="room-modal" id="roomModal" hidden>
+    <div class="room-modal-backdrop" data-close-modal="true"></div>
+    <section class="room-modal-card" role="dialog" aria-modal="true" aria-labelledby="modalRoomName">
+      <button type="button" class="modal-close" data-close-modal="true" aria-label="Tutup">×</button>
+      <div class="modal-room-illustration" id="modalIllustration">
+        <div class="illustration-window"></div><div class="illustration-board"></div>
+        <div class="illustration-desk desk-one"></div><div class="illustration-desk desk-two"></div><div class="illustration-desk desk-three"></div>
+        <div class="illustration-floor"></div>
+      </div>
+      <p class="eyebrow" id="modalEyebrow">INFORMASI RUANG</p>
+      <h2 id="modalRoomName">K1.01.01</h2>
+      <p class="muted" id="modalRoomLocation">Gedung K1 · Lantai 1</p>
+      <div class="modal-detail-grid">
+        <div><small>Kapasitas</small><b id="modalCapacity">30 orang</b></div>
+        <div><small>Minimum peserta</small><b id="modalMinimum">1 orang</b></div>
+        <div><small>Status jadwal</small><b id="modalStatus">Tersedia</b></div>
+        <div><small>Fasilitas</small><b id="modalFacilities">AC, Papan tulis</b></div>
+      </div>
+      <p class="photo-caption" id="photoCaption">Ilustrasi ruang kelas untuk pratinjau. Foto ini bukan foto aktual ruang kampus.</p>
+      <div class="modal-actions"><button class="btn btn-light" data-close-modal="true">Tutup</button><button class="btn btn-primary" id="modalChooseRoom">Pilih Ruang <span>→</span></button></div>
+    </section>
+  </div>
+</section>
+  </template>
+
+  <template id="bookingTemplate">
+<section class="subpage">
+  <div class="welcome-row sub-welcome"><div><p class="eyebrow">TRANSAKSI PEMINJAMAN</p><h1>Ajukan Booking Ruang</h1><p class="muted">Lengkapi data kegiatan dan waktu penggunaan ruang.</p></div><span class="page-symbol orange-symbol">＋</span></div>
+  <div class="form-layout">
+    <section class="panel booking-panel">
+      <div class="panel-heading"><div><h2>Formulir pengajuan</h2><p class="muted">Kolom bertanda * wajib diisi.</p></div><span class="form-step">01 / 01</span></div>
+      <form id="bookingForm" novalidate>
+        <div class="form-section-title"><span>1</span><b>Informasi pemesan</b></div>
+        <div class="form-grid">
+          <label>Nama pemesan *<input type="text" id="bookerName" name="bookerName" placeholder="Masukkan nama lengkap" required minlength="3" maxlength="80"><small class="field-error" data-for="bookerName"></small></label>
+          <label>Email kampus *<input type="email" id="bookerEmail" name="bookerEmail" placeholder="nama@kampus.ac.id" required><small class="field-error" data-for="bookerEmail"></small></label>
+        </div>
+        <div class="form-section-title"><span>2</span><b>Detail booking</b></div>
+        <div class="form-grid">
+          <label>Pilih ruang *<select id="roomName" name="roomName" required><option value="">Pilih ruang kelas (K1–K10)</option></select><small class="field-error" data-for="roomName"></small></label>
+          <label>Tujuan penggunaan *<select id="purpose" name="purpose" required><option value="">Pilih tujuan</option><option>Perkuliahan</option><option>Diskusi kelompok</option><option>Rapat organisasi</option><option>Praktikum</option><option>Bimbingan</option><option>Kegiatan akademik lainnya</option></select><small class="field-error" data-for="purpose"></small></label>
+          <label>Tanggal penggunaan *<input type="date" id="bookingDate" name="bookingDate" required><small class="field-error" data-for="bookingDate"></small></label>
+          <label>Jumlah peserta *<input type="number" id="participants" name="participants" min="1" max="200" placeholder="Contoh: 25" required><small class="field-error" data-for="participants"></small></label>
+          <label>Waktu mulai *<input type="time" id="startTime" name="startTime" required><small class="field-error" data-for="startTime"></small></label>
+          <label>Waktu selesai *<input type="time" id="endTime" name="endTime" required><small class="field-error" data-for="endTime"></small></label>
+        </div>
+        <label class="full-label">Keterangan tambahan<textarea id="notes" name="notes" rows="3" maxlength="300" placeholder="Tuliskan kebutuhan khusus jika ada (opsional)"></textarea><small class="muted">Maksimal 300 karakter.</small><small class="notes-counter" id="notesCounter">0/300 karakter</small></label>
+        <div class="booking-live-preview" id="bookingPreview" aria-live="polite">
+          <div class="preview-heading"><span>▣</span><div><b>Ringkasan sementara</b><small>Ringkasan akan diperbarui saat formulir diisi.</small></div></div>
+          <div class="preview-content">Lengkapi nama, ruang, tanggal, dan waktu untuk melihat ringkasan booking.</div>
+        </div>
+        <div class="form-alert" id="formAlert" role="alert" aria-live="polite"></div>
+        <div class="form-actions"><button type="reset" class="btn btn-light">Reset</button><button type="submit" class="btn btn-primary">Validasi Pengajuan <span>→</span></button></div>
+      </form>
+    </section>
+    <aside class="panel rules-panel"><div class="rules-icon">ⓘ</div><h3>Sebelum mengajukan</h3><ul><li>Pastikan ruang sesuai dengan jumlah peserta.</li><li>Waktu selesai harus lebih akhir dari waktu mulai.</li><li>Pengajuan akan berstatus <b>Submitted</b> untuk ditinjau pengelola.</li><li>Booking dapat ditolak jika berbenturan dengan jadwal lain atau maintenance.</li></ul><div class="rules-divider"></div><div class="secure-note"><span>✓</span><p><b>Validasi formulir</b><br><small>Data diperiksa oleh JavaScript sebelum simulasi pengiriman.</small></p></div><p class="demo-disclaimer">Prototipe UTS: formulir masih berupa simulasi pada browser.</p></aside>
+  </div>
+  <div id="bookingResult" class="result-card" hidden></div>
+</section>
+  </template>
+
+  <script src="assets/app.js"></script>
+</body>
+</html>

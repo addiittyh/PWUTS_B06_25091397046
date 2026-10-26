@@ -1,0 +1,33 @@
+<section class="subpage">
+  <div class="welcome-row sub-welcome"><div><p class="eyebrow">TRANSAKSI PEMINJAMAN</p><h1>Ajukan Booking Ruang</h1><p class="muted">Lengkapi data kegiatan dan waktu penggunaan ruang.</p></div><span class="page-symbol orange-symbol">＋</span></div>
+  <div class="form-layout">
+    <section class="panel booking-panel">
+      <div class="panel-heading"><div><h2>Formulir pengajuan</h2><p class="muted">Kolom bertanda * wajib diisi.</p></div><span class="form-step">01 / 01</span></div>
+      <form id="bookingForm" novalidate>
+        <div class="form-section-title"><span>1</span><b>Informasi pemesan</b></div>
+        <div class="form-grid">
+          <label>Nama pemesan *<input type="text" id="bookerName" name="bookerName" placeholder="Masukkan nama lengkap" required minlength="3" maxlength="80"><small class="field-error" data-for="bookerName"></small></label>
+          <label>Email kampus *<input type="email" id="bookerEmail" name="bookerEmail" placeholder="nama@kampus.ac.id" required><small class="field-error" data-for="bookerEmail"></small></label>
+        </div>
+        <div class="form-section-title"><span>2</span><b>Detail booking</b></div>
+        <div class="form-grid">
+          <label>Pilih ruang *<select id="roomName" name="roomName" required><option value="">Pilih ruang kelas (K1–K10)</option></select><small class="field-error" data-for="roomName"></small></label>
+          <label>Tujuan penggunaan *<select id="purpose" name="purpose" required><option value="">Pilih tujuan</option><option>Perkuliahan</option><option>Diskusi kelompok</option><option>Rapat organisasi</option><option>Praktikum</option><option>Bimbingan</option><option>Kegiatan akademik lainnya</option></select><small class="field-error" data-for="purpose"></small></label>
+          <label>Tanggal penggunaan *<input type="date" id="bookingDate" name="bookingDate" required><small class="field-error" data-for="bookingDate"></small></label>
+          <label>Jumlah peserta *<input type="number" id="participants" name="participants" min="1" max="200" placeholder="Contoh: 25" required><small class="field-error" data-for="participants"></small></label>
+          <label>Waktu mulai *<input type="time" id="startTime" name="startTime" required><small class="field-error" data-for="startTime"></small></label>
+          <label>Waktu selesai *<input type="time" id="endTime" name="endTime" required><small class="field-error" data-for="endTime"></small></label>
+        </div>
+        <label class="full-label">Keterangan tambahan<textarea id="notes" name="notes" rows="3" maxlength="300" placeholder="Tuliskan kebutuhan khusus jika ada (opsional)"></textarea><small class="muted">Maksimal 300 karakter.</small><small class="notes-counter" id="notesCounter">0/300 karakter</small></label>
+        <div class="booking-live-preview" id="bookingPreview" aria-live="polite">
+          <div class="preview-heading"><span>▣</span><div><b>Ringkasan sementara</b><small>Ringkasan akan diperbarui saat formulir diisi.</small></div></div>
+          <div class="preview-content">Lengkapi nama, ruang, tanggal, dan waktu untuk melihat ringkasan booking.</div>
+        </div>
+        <div class="form-alert" id="formAlert" role="alert" aria-live="polite"></div>
+        <div class="form-actions"><button type="reset" class="btn btn-light">Reset</button><button type="submit" class="btn btn-primary">Validasi Pengajuan <span>→</span></button></div>
+      </form>
+    </section>
+    <aside class="panel rules-panel"><div class="rules-icon">ⓘ</div><h3>Sebelum mengajukan</h3><ul><li>Pastikan ruang sesuai dengan jumlah peserta.</li><li>Waktu selesai harus lebih akhir dari waktu mulai.</li><li>Pengajuan akan berstatus <b>Submitted</b> untuk ditinjau pengelola.</li><li>Booking dapat ditolak jika berbenturan dengan jadwal lain atau maintenance.</li></ul><div class="rules-divider"></div><div class="secure-note"><span>✓</span><p><b>Validasi formulir</b><br><small>Data diperiksa oleh JavaScript sebelum simulasi pengiriman.</small></p></div><p class="demo-disclaimer">Prototipe UTS: formulir masih berupa simulasi pada browser.</p></aside>
+  </div>
+  <div id="bookingResult" class="result-card" hidden></div>
+</section>

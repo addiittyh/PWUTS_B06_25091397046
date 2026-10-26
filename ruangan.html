@@ -1,0 +1,106 @@
+<section class="subpage rooms-page">
+  <div class="welcome-row sub-welcome">
+    <div>
+      <p class="eyebrow">PENCARIAN RUANG</p>
+      <h1>Ruangan Tersedia</h1>
+      <p class="muted">Pilih tanggal dan waktu, lalu cari ruang kelas yang sesuai untuk kegiatanmu.</p>
+    </div>
+    <span class="page-symbol">⌕</span>
+  </div>
+
+  <div class="booking-search-layout">
+    <section class="panel room-filter-panel">
+      <div class="panel-heading">
+        <div><h2>Form Pencarian</h2><p class="muted">Pilih jadwal peminjaman</p></div>
+      </div>
+      <form id="roomFilter" class="room-search-form">
+        <label>Tanggal penggunaan
+          <input type="date" id="filterDate" required>
+        </label>
+        <label>Jam mulai
+          <input type="time" id="filterStart" value="08:00" required>
+        </label>
+        <label>Jam selesai
+          <input type="time" id="filterEnd" value="10:00" required>
+        </label>
+        <label>Gedung
+          <select id="filterBuilding">
+            <option value="">Semua gedung (K1–K10)</option>
+            <option value="1">Gedung K1</option><option value="2">Gedung K2</option>
+            <option value="3">Gedung K3</option><option value="4">Gedung K4</option>
+            <option value="5">Gedung K5</option><option value="6">Gedung K6</option>
+            <option value="7">Gedung K7</option><option value="8">Gedung K8</option>
+            <option value="9">Gedung K9</option><option value="10">Gedung K10</option>
+          </select>
+        </label>
+        <label>Minimal kapasitas
+          <select id="filterCapacity">
+            <option value="0">Semua kapasitas</option>
+            <option value="30">30 orang</option><option value="40">40 orang</option>
+            <option value="50">50 orang</option><option value="60">60 orang</option>
+            <option value="80">80 orang</option>
+          </select>
+        </label>
+        <label>Status ruangan
+          <select id="filterStatus">
+            <option value="available">Tersedia saja</option>
+            <option value="all">Semua status</option>
+            <option value="occupied">Terjadwal</option>
+            <option value="maintenance">Maintenance</option>
+          </select>
+        </label>
+        <div class="room-filter-actions">
+          <button class="btn btn-primary room-search-button" type="submit">Cari Ruangan <span>→</span></button>
+          <button class="btn btn-light room-reset-button" type="button" id="resetRoomFilters">Reset Filter</button>
+        </div>
+      </form>
+      <div class="room-filter-note"><span>ⓘ</span><p>Status ketersediaan merupakan simulasi untuk UTS dan dapat berubah sesuai tanggal serta waktu pilihan.</p></div>
+    </section>
+
+    <section class="panel room-table-panel">
+      <div class="room-table-heading">
+        <div><h2>Daftar Ruangan</h2><p class="muted" id="resultCount">Memuat data ruangan...</p></div>
+        <div class="room-table-controls">
+          <button type="button" class="btn btn-outline favorite-filter-btn" id="favoritesOnly">☆ Favorit saya <span id="favoriteCount">0</span></button>
+          <button type="button" class="btn btn-light export-rooms-btn" id="exportRooms">↓ CSV</button>
+          <label class="room-search-box"><span>⌕</span><input type="search" id="roomSearch" placeholder="Cari kode ruang..."></label>
+        </div>
+      </div>
+      <div class="room-range-note"><span class="range-dot"></span> Rentang kode: <b>K1.01.01</b> sampai <b>K10.10.10</b> <span class="range-count">1.000 ruang simulasi</span></div>
+      <div class="table-responsive">
+        <table class="rooms-table">
+          <thead><tr><th>Nama Ruang</th><th>Kapasitas</th><th>Minimum Peserta</th><th>Status</th><th>Aksi</th></tr></thead>
+          <tbody id="roomTableBody"><tr><td colspan="5" class="table-loading">Memuat data ruangan...</td></tr></tbody>
+        </table>
+      </div>
+      <div class="table-footer">
+        <span id="tableTotal">Total: 1.000 data</span>
+        <nav id="roomPagination" class="pagination" aria-label="Halaman daftar ruangan"></nav>
+      </div>
+      <div id="roomNotice" class="notice" role="status" aria-live="polite"></div>
+    </section>
+  </div>
+
+  <div class="room-modal" id="roomModal" hidden>
+    <div class="room-modal-backdrop" data-close-modal="true"></div>
+    <section class="room-modal-card" role="dialog" aria-modal="true" aria-labelledby="modalRoomName">
+      <button type="button" class="modal-close" data-close-modal="true" aria-label="Tutup">×</button>
+      <div class="modal-room-illustration" id="modalIllustration">
+        <div class="illustration-window"></div><div class="illustration-board"></div>
+        <div class="illustration-desk desk-one"></div><div class="illustration-desk desk-two"></div><div class="illustration-desk desk-three"></div>
+        <div class="illustration-floor"></div>
+      </div>
+      <p class="eyebrow" id="modalEyebrow">INFORMASI RUANG</p>
+      <h2 id="modalRoomName">K1.01.01</h2>
+      <p class="muted" id="modalRoomLocation">Gedung K1 · Lantai 1</p>
+      <div class="modal-detail-grid">
+        <div><small>Kapasitas</small><b id="modalCapacity">30 orang</b></div>
+        <div><small>Minimum peserta</small><b id="modalMinimum">1 orang</b></div>
+        <div><small>Status jadwal</small><b id="modalStatus">Tersedia</b></div>
+        <div><small>Fasilitas</small><b id="modalFacilities">AC, Papan tulis</b></div>
+      </div>
+      <p class="photo-caption" id="photoCaption">Ilustrasi ruang kelas untuk pratinjau. Foto ini bukan foto aktual ruang kampus.</p>
+      <div class="modal-actions"><button class="btn btn-light" data-close-modal="true">Tutup</button><button class="btn btn-primary" id="modalChooseRoom">Pilih Ruang <span>→</span></button></div>
+    </section>
+  </div>
+</section>
